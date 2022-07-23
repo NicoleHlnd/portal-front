@@ -1,0 +1,219 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+            .containerx{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background-color: #E9E9E9;
+                height: 93%;
+                width: 100%;
+            }
+            .header{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color:#1f1f1f ;
+                height: 7%;
+                width: 100%;
+            }
+            .imageProfile{
+                border-style: solid;
+                border-radius: 5px;
+                border-color: #F45C19;
+                margin-left: 50px;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden
+            }
+            .imageProfile img{
+                flex-shrink: 0;
+                min-width: 100%;
+                min-height: 100%
+            }
+            .viewRequest{
+                display:flex;
+                flex-direction: column;
+                border: none;
+                border-radius: 15px;
+                background-color: #F45C19;
+                height:750px;
+                width: 600px;
+            }
+            .answeRequest{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-self: center;
+                margin-top: auto;
+                margin-bottom: 80px;
+                border: none;
+                border-radius: 10px;
+                height: 60px;
+                width: 200px;
+                background-color:#1f1f1f ;
+            }
+            p{
+                text-align: start;
+                font-weight: bold;
+            }
+            .description{
+                display: flex; 
+                border: none;
+                border-radius: 10px;
+                background-color: #FFFFFF;
+                height: 100px;
+                width: 500px;
+            }
+            #modalx{
+                border: none;
+                border-radius: 10px;
+                margin-left: 10px;
+                display: flex;
+                flex-direction: row;
+                width: 200px;
+                border: 1px solid #ccc;
+                flex-wrap: wrap;
+                background-color: #E9E9E9;
+            }
+            .item {
+                flex: 1;
+                max-height: 25px;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin: 5px;
+                text-align: center;
+                font-size: 1em;
+            } 
+        </style>   
+    </head>
+    <body>
+        <div class="header">
+            <div onclick="showModal()" class="imageProfile">
+                <img width="40px" src="./bruceWaynePerson.jpg">
+            </div>
+            <div style="display: none" id="modalx">
+                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalBadge.html" ><div class="item">Badge</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalPayLotPdf.html"><div class="item">Money</div></a>
+                <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
+            </div>
+            <span  id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px;">Bruce Wayne</span>
+        </div>  
+        <div class="containerx">
+            <div class="viewRequest">
+                <div style="margin-left: 45px; margin-top: 20px; ">
+                    <p style="color:white">ID:</p>
+                    <p style= "font-size: 18px;" id="idText">#12345</p>
+                    <p style="color:white">TITLE:</p>
+                    <p style= "font-size: 18px;" id="titleText">FIX MOUSE</p>
+                    <p style="color:white">DESCRIPTION:</p>
+                    <p style= "font-size: 18px;" id="descriptionText">FIX ROOM 4 MOUSE BECAUSE IT HAS BROKEN DUE TO A FALL</p>
+                    <p style="color:white; margin-top: 60px;">CREATED BY:<span id="createdByText" style="color:black; margin-left: 5px;">MEGAESTILO</span></p>
+                    <p style="color:white">REQUEST SECTOR:<span id="requestSectorText" style="color: black; margin-left: 5px;">HUMAN RESOURCES</p>
+                    <p style="color:white">REQUEST DATE:<span id="requestDateText" style="color:black; margin-left: 5px;">15/02/2022</p></p>
+                        <div id="commentDiv" style="display: none;">
+                            <span style="color:black; margin-right: 380px; font-weight: bold;">COMMENT</span>
+                            <input id="description" class="description"></input>
+                        </div>
+                    </div>
+              
+                <button onclick="respond()" style="display:none; margin-top: 30px;" id="answeRequest" class="answeRequest"><span style="color:#FFFFFF; font-weight: bold;">ANSWER REQUEST</span></button> 
+                <button onclick="finalize()" style="display:none; margin-top: 30px;" id="finalize" class="answeRequest"><span style="color:#FFFFFF; font-weight: bold;">FINALIZE</span></button>  
+            </div>
+        </div>
+        <script>
+            async function finalize(){
+                const request = JSON.parse(localStorage.requestToView)
+                const body = {"id": request.id}
+                if(!document.getElementById("description").value){
+                    return alert("FILL IN THE COMMENT")
+                }
+                const url = "http://localhost:3000/finalizeRequest"
+                const response = await fetch(url, {
+                    method: "PUT",
+                    body: JSON.stringify(body),
+                    headers: {"Content-Type": "application/json"}
+                })
+                document.location.href = "portalRequests.html"
+            }
+
+            function showModal(){
+                const modal = document.getElementById("modalx")
+                modal.style.display = modal.style.display == "none" ? "flex" : "none"
+            }
+            function logout(){
+            localStorage.removeItem("employee")
+            document.location.href = "portal.html"
+            }
+
+            function setRequest(){
+                const request = JSON.parse(localStorage.requestToView)
+                const id = document.getElementById("idText")
+                const title = document.getElementById("titleText")
+                const description = document.getElementById("descriptionText")
+                const createdBy = document.getElementById("createdByText")
+                const requestSector = document.getElementById("requestSectorText")
+                const requestDate = document.getElementById("requestDateText")
+                if(request.status == "PENDING"){
+                    const button = document.getElementById("answeRequest")
+                    button.style.display = "flex"
+                    
+                }else if(request.status == "IN ATTENDANCE"){
+                    const commentDiv = document.getElementById("commentDiv")
+                    const button = document.getElementById("finalize")
+                    commentDiv.style.display ="block"
+                    button.style.display = "flex"
+                }
+                id.innerHTML = request.id
+                title.innerHTML = request.title
+                description.innerHTML = request.description
+                console.log(createdBy)
+                createdBy.innerHTML = request.askedby
+                requestSector.innerHTML = request.sector
+                requestDate.innerHTML = request.requestsdate
+            }
+            const employeeJSON = localStorage.employee
+            if(employeeJSON){
+                const employee = JSON.parse(employeeJSON)
+                const nameElement = document.getElementById("name")
+                nameElement.textContent = employee.name
+                setRequest()
+            }else{
+                document.location.href = "portal.html"
+            }
+            
+            async function respond(){
+                const request = JSON.parse(localStorage.requestToView)
+                const body = {"id": request.id}
+                const url = "http://localhost:3000/answerRequest"
+                const response = await fetch(url, {
+                    method: "PUT",
+                    body: JSON.stringify(body),
+                    headers: {"Content-Type": "application/json"}
+                })
+                document.location.href = "portalRequests.html"    
+            }
+            function showModal(){
+                const modal = document.getElementById("modalx")
+                modal.style.display = modal.style.display == "none" ? "flex" : "none"
+            }
+            function logout(){
+            localStorage.removeItem("employee")
+            document.location.href = "portal.html"
+            }
+        </script>
+    </body>
+</html>

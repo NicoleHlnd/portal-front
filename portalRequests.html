@@ -1,0 +1,185 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                background-color: 100vw;
+            }
+            .containerx{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background-color: #E9E9E9;
+                height: 93%;
+                width: 100%;
+            }
+            .header{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color:#1f1f1f ;
+                height: 7%;
+                width: 100%;
+            }
+            .requests{
+                
+                align-items: center;
+                position: absolute;
+                border-radius: 15px;
+                background-color: #D1D1D1;
+                height:600px ;
+                width: 900px;
+            }
+            .newRequests{
+                margin-top: 700px;
+                border: none;
+                border-radius: 10px;
+                height: 60px;
+                width: 250px;
+                background-color:#F45C19;  
+            }
+            .imageProfile{
+                border-style: solid;
+                border-radius: 5px;
+                border-color: #F45C19;
+                margin-left: 50px;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden
+            }
+            .imageProfile img{
+                flex-shrink: 0;
+                min-width: 100%;
+                min-height: 100%
+            }
+            #modalx{
+                border: none;
+                border-radius: 10px;
+                margin-left: 10px;
+                display: flex;
+                flex-direction: row;
+                width: 200px;
+                border: 1px solid #ccc;
+                flex-wrap: wrap;
+                background-color: #E9E9E9;
+            }
+            .item {
+                flex: 1;
+                max-height: 25px;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin: 5px;
+                text-align: center;
+                font-size: 1em;
+            } 
+        </style> 
+    </head>
+    <body>
+        <div>
+        <div class="header">
+            <div onclick="showModal()" class="imageProfile">
+                <img width="40px" src="./bruceWaynePerson.jpg">
+            </div>
+            <div style="display: none" id="modalx">
+                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalBadge.html" ><div class="item">Badge</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalPayLotPdf.html"><div class="item">Money</div></a>
+                <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
+            </div>
+            <span id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px; font-weight: bold;"></span>
+        </div>
+    </div>
+        <div class="containerx">
+            <div class="requests">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th style="color: #F45C19;" scope="col">#ID</th>
+                        <th style="color: #F45C19;" scope="col">TITLE</th>
+                        <th style="color: #F45C19;" scope="col">ASKED BY</th>
+                        <th style="color: #F45C19;" scope="col">REQUEST</th>
+                        <th style="color: #F45C19;" scope="col">CONCLUSION</th>
+                        <th style="color: #F45C19;" scope="col">STATUS</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                  </table>
+            </div>
+            <button onclick="goToCreateReq()" class="newRequests"></buttton>
+                <span style="color:black; font-weight: bold;">NEW REQUEST</span>
+        </div>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <script>
+            function logout(){
+                localStorage.removeItem("employee")
+                document.location.href = "portal.html"
+            }
+            function showModal(){
+                const modal = document.getElementById("modalx")
+                modal.style.display = modal.style.display == "none" ? "flex" : "none"
+            }
+            function goToCreateReq(){
+                document.location.href = "portalNewRequest.html"
+            }
+            const tbody = document.getElementById("tbody")
+            async function setRequests(){
+                const url =  "http://localhost:3000/Requests"
+                const response = await fetch(url, {method:"GET",})
+                const requests = await response.json()
+                requests.forEach((request) => {
+                    var tr = document.createElement("tr")
+                    tr.onclick = () => {
+                        localStorage.setItem("requestToView", JSON.stringify(request))
+                        document.location.href = "portalViewRequest.html"
+                    }
+                    var thID = document.createElement("th")
+                    thID.innerHTML = request.id
+                    tr.appendChild(thID)
+
+                    var tdTitle = document.createElement("td")
+                    tdTitle.innerHTML = request.title
+                    tr.appendChild(tdTitle)
+
+                    var tdAskedBy = document.createElement("td")
+                    tdAskedBy.innerHTML = request.askedby
+                    tr.appendChild(tdAskedBy)
+
+                    var tdRequestsdate = document.createElement("td")
+                    tdRequestsdate.innerHTML = request.requestsdate
+                    tr.appendChild(tdRequestsdate)
+
+                    var tdConclusiondate = document.createElement("td")
+                    tdConclusiondate.innerHTML = request.conclude
+                    tr.appendChild(tdConclusiondate)
+
+                    var tdStatus = document.createElement("td")
+                    tdStatus.innerHTML = request.status
+                    tr.appendChild(tdStatus)
+               
+                    tbody.appendChild(tr)
+                })
+                console.log(requests)
+            }
+            const employeeJSON = localStorage.employee
+            if(employeeJSON){
+                const employee = JSON.parse(employeeJSON)
+                const nameElement = document.getElementById("name")
+                console.log(employee)
+                nameElement.textContent = employee.name
+                setRequests()
+            }else{
+                document.location.href = "portal.html"
+            }
+        </script>
+    </body>
+</html>

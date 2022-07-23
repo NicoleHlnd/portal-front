@@ -1,0 +1,245 @@
+<html>
+    <head>
+        <style>
+            body{
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+            .containerx{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                background-color: #E9E9E9;
+                height: 93%;
+                width: 100%;
+            }
+            .header{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color:#1f1f1f ;
+                height: 7%;
+                width: 100%;
+            }
+            .imageProfile{
+                border-style: solid;
+                border-radius: 5px;
+                border-color: #F45C19;
+                margin-left: 50px;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden
+            }
+            .imageProfile img{
+                flex-shrink: 0;
+                min-width: 100%;
+                min-height: 100%
+            }
+            .frontBadge{
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-right: 15px;
+                border: none;
+                border-radius: 15px;
+                background-color: #D1D1D1;
+                height:550px;
+                width: 330px;
+           
+            }
+            .backBadge{
+                  
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-left: 15px;
+                border: none;
+                border-radius: 15px;
+                background-color: #D1D1D1;
+                height:550px;
+                width: 330px;
+            }
+            .badges{
+                display:flex
+            }
+            .top{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color:#F45C19 ;
+                height: 10%;
+                width: 100%;  
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                margin-bottom: auto;
+            }
+            .bottom{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color:#F45C19 ;
+                height: 10%;
+                width: 100%;  
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                margin-top: auto;
+            }
+            .frontBadge{
+                background-color: #F45C19;
+            }
+            .imgPerson{
+                background-color: #FFFFFF;
+                border-radius: 15px;
+                height: 200px;
+                width: 140px;
+                margin-top: 40px;
+            }
+            .informations{
+                margin-top: 150px;
+                margin-left: 30px;
+                margin-right: auto;
+                display: flex;
+                display: 1;
+                flex-direction:column;
+            }
+            .name{
+                justify-content: center;
+                align-items: center;
+                border: none;
+                display: flex;
+                margin-bottom: 15px;
+                border: none;
+                border-radius: 10px;
+                background-color: #FFFFFF;
+                height: 40px;
+                width: 300px;
+            }
+            .ctps{
+                justify-content: center;
+                align-items: center;
+                border: none;
+                display: flex;
+                margin-bottom: 15px;
+                border: none;
+                border-radius: 10px;
+                background-color: #FFFFFF;
+                height: 40px;
+                width: 300px;
+            }
+            .admissiondat{ 
+                justify-content: center;
+                align-items: center;
+                border: none;
+                display: flex;
+                border-radius: 10px;
+                background-color: #FFFFFF;
+                height: 40px;
+                width: 160px;
+            }
+            #modalx{
+                border: none;
+                border-radius: 10px;
+                margin-left: 10px;
+                display: flex;
+                flex-direction: row;
+                width: 200px;
+                border: 1px solid #ccc;
+                flex-wrap: wrap;
+                background-color: #E9E9E9;
+            }
+            .item {
+                flex: 1;
+                max-height: 25px;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin: 5px;
+                text-align: center;
+                font-size: 1em;
+            } 
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div onclick="showModal()" class="imageProfile">
+                <img width="40px" src="./bruceWaynePerson.jpg">
+            </div>
+            <div style="display: none" id="modalx">
+                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalBadge.html" ><div class="item">Badge</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalPayLotPdf.html"><div class="item">Money</div></a>
+                <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
+            </div>
+                <span id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px; font-weight: bold;">Bruce Wayne</span>
+        </div>
+        <div class="containerx">
+            <div class="badges">
+                <div class="frontBadge">
+                    <div class="imgPerson">
+                        <img width="100%" height="100%" style="border-radius: 8px;" src="./bruceWaynePerson.jpg"/>
+                    </div>
+                    <div class="informations">
+                        <span style="font-weight: bold; font-weight: bold;" ><li> <span id="nameBadgeFront">BRUCE WAYNE </span></li></span>
+                        <span style="font-weight: bold; font-weight: bold;"><li id="sector">DESENVOLVEDOR BACKEND</li></span>
+                    </div> 
+                </div>
+                <div class="backBadge">
+                    <div class="top">
+                    </div>
+                    <span  style="font-weight: bold;">NAME</span>
+                    <div id="nameBadgeBack" class="name"> 
+                        BRUCE WAYNE 
+                    </div>
+                    <SPAN style="font-weight: bold;">CTPS</SPAN>
+                    <div class="ctps">
+                        123457/1234
+                    </div>
+                    <span style="font-weight: bold;">ADMISSION</span>
+                    <div id="admission" class="admissiondat">
+                        15/06/2021
+                    </div>
+                    <div class="bottom">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+           const employeeJSON = localStorage.employee
+            if(employeeJSON){   
+                const employee = JSON.parse(employeeJSON)
+
+                const nameElement = document.getElementById("name")
+                nameElement.textContent = employee.name
+
+                const nameBadgeFrontElement = document.getElementById("nameBadgeFront")
+                nameBadgeFrontElement.textContent = employee.name
+             
+                const sectorElement = document.getElementById("sector")
+                sectorElement.textContent = employee.sector
+
+                const nameBadgeBackElement = document.getElementById("nameBadgeBack")
+                nameBadgeBackElement.textContent = employee.name
+
+                const admissionElement = document.getElementById("admission")
+                admissionElement.textContent = employee.admission
+            }
+            function logout(){
+            localStorage.removeItem("employee")
+            document.location.href = "portal.html"
+            }
+            function showModal(){
+                    const modal = document.getElementById("modalx")
+                    modal.style.display = modal.style.display == "none" ? "flex" : "none"
+                }
+    </script>
+</html>

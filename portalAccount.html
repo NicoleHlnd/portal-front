@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+            .containerx{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                display: flex;
+                flex:1;
+                flex-direction: row;
+                background-color: #E9E9E9;
+                height: 100%;
+                width: 100%;   
+            }
+            .telaDeLogin{
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                border-radius: 15px;
+                background-color: #F45C19;
+                height:750px;
+                width: 600px;
+            }
+            .username{   
+                border: none;
+                display: flex;
+                border-radius: 15px;
+                background-color: #FFFFFF;
+                height: 60px;
+                width: 500px;
+            }
+            .password{
+                border: none;
+                display: flex;
+                border-radius: 15px;
+                background-color: #FFFFFF;
+                height: 60px;
+                width: 500px;
+            }
+            #singIn{
+                margin-top: 50px;
+                margin-left: 356px;
+                margin-bottom: auto;
+                border: none;
+                border-radius: 15px;
+                background-color: #020202;
+                height: 60px;
+                width: 150px;
+            }
+            #newAccount{
+                margin-top: auto;
+                margin-bottom: 40px;
+            }
+            .email{
+                border:none;
+                display: flex;
+                border-radius: 15px;
+                background-color: #FFFFFF;
+                height: 60px;
+                width: 500px;
+            }
+            .sector{
+                margin-right: 250px;
+                border: none;
+                display: flex;
+                background-color: #FFFFFF;
+                height: 40px;
+                width: 250px;
+            }
+            .titleDiv{
+                margin-top: 10px;
+                display: flex;
+                justify-items: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            .titleDiv h1 {
+                font-size: 35px;
+                color: black;
+                font-weight: bold;
+            }
+            .titleDiv h2 {
+                font-weight: bold;
+                font-size: 17px;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>     
+        <div class="containerx">
+            <div class="telaDeLogin">
+                <div class="titleDiv">
+                    <h1>NormaLABS</h1>
+                    <h2>Fazendo acontecer</h2>
+                </div>
+                <span style="margin-right:410px; color: white; margin-top: auto; font-weight: bold;">USERNAME</span>
+                <input class="username" id="username">
+                </input>
+                <span style="margin-right:450px; color: white; margin-top: 20px; font-weight: bold;">EMAIL</span>
+                <input id ="email" class ="email"></input>
+                <span style="margin-right:410px; color: white; margin-top: 20px; font-weight: bold;">PASSWORD</span>
+                <input type="password" id="password" class="password">
+                </input>
+                <span style="margin-right:330px; color: white; margin-top: 20px; font-weight: bold;">CONFIRM PASSWORD</span>
+                <input type="password" id="confirmPassword" class="password">
+                </input>
+                <span style="margin-right:437px; color: white; margin-top: 20px; font-weight: bold;">SECTOR</span>
+                <select id="sector" class="form-select" style="height: 40px; width: 250px; margin-right: 250px;" aria-label="Default select example">
+                    <option selected>Select the sector of user</option>
+                    <option value="1">T.I</option>
+                    <option value="2">RH</option>
+                    <option value="3">Administrativo</option>
+                </select>
+                <button onclick="register()" id="singIn">
+                    <span style="color:#FFFFFF;  font-weight: bold; ">SING IN</span>
+                </button>
+            </div>                          
+        </div>
+        <script>
+            async function register(){
+                var username = document.getElementById("username").value
+                var email = document.getElementById("email").value
+                var password = document.getElementById("password").value
+                var confirmPassword = document.getElementById("confirmPassword").value
+                var sector = document.getElementById("sector")
+                const sectorValue = sector.options[sector.selectedIndex].text;
+                if(password !== confirmPassword){
+                    return alert("passwords don't match")
+                }
+
+                const obj = {
+                    "name": username,
+                    "email": email,
+                    "password": password,
+                    "sector": sectorValue
+                }
+                if(!username || !email || !password || !sector){
+                    return alert("Fill all fields")
+                }
+
+                const url = "http://localhost:3000/employees"
+                const response = await fetch(url, {
+                    method: "POST",
+                    body: JSON.stringify(obj),
+                    headers: {"Content-Type": "application/json"}
+                })
+                if(response.status == 200){
+                    alert("ACCOUNT CREATED, CLICK OK TO LOGIN")           
+                    window.location.href = "portal.html"  
+                }else{
+                    return alert("error in crete account")
+                }
+            }
+        </script>
+    </body>
+</html> 
