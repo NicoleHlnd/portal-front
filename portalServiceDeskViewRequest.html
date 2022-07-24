@@ -106,8 +106,8 @@
                 <img width="40px" src="./bruceWaynePerson.jpg">
             </div>
             <div style="display: none" id="modalx">
-                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalBadge.html" ><div class="item">Badge</div></a>
-                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalPayLotPdf.html"><div class="item">Money</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalAccountBadge.html" ><div class="item">Badge</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalAccountPayLotPdf.html"><div class="item">Money</div></a>
                 <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
             </div>
             <span  id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px;">Bruce Wayne</span>
@@ -147,7 +147,7 @@
                     body: JSON.stringify(body),
                     headers: {"Content-Type": "application/json"}
                 })
-                document.location.href = "portalRequests.html"
+                document.location.href = "portalServiceDeskViewAllRequests.html"
             }
 
             function showModal(){
@@ -156,7 +156,7 @@
             }
             function logout(){
             localStorage.removeItem("employee")
-            document.location.href = "portal.html"
+            document.location.href = "portalLogin.html"
             }
 
             function setRequest(){
@@ -192,7 +192,7 @@
                 nameElement.textContent = employee.name
                 setRequest()
             }else{
-                document.location.href = "portal.html"
+                document.location.href = "portalLogin.html"
             }
             
             async function respond(){
@@ -204,7 +204,7 @@
                     body: JSON.stringify(body),
                     headers: {"Content-Type": "application/json"}
                 })
-                document.location.href = "portalRequests.html"    
+                document.location.href = "portalServiceDeskViewAllRequests.html"    
             }
             function showModal(){
                 const modal = document.getElementById("modalx")
@@ -212,7 +212,7 @@
             }
             function logout(){
             localStorage.removeItem("employee")
-            document.location.href = "portal.html"
+            document.location.href = "portalLogin.html"
             }
         </script>
     </body>

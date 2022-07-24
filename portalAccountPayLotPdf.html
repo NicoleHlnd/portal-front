@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <style>
             body{
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -55,21 +56,6 @@
                 width: 100px;
                 background-color:#F45C19 ;
             }
-            .downloadPdf{
-                margin-top: 10px;
-                margin-left:10px;
-                border: none;
-                border-radius: 10px;
-                height: 40px;
-                width: 100px;
-                background-color:#F45C19 ;
-            }
-            .buttons{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
             #modalx{
                 border: none;
                 border-radius: 10px;
@@ -100,46 +86,23 @@
                 <img width="40px" src="./bruceWaynePerson.jpg">
             </div>
             <div style="display: none" id="modalx">
-                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalBadge.html" ><div class="item">Badge</div></a>
-                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalPayLotPdf.html"><div class="item">Money</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalAccountBadge.html" ><div class="item">Badge</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalAccountPayLotPdf.html"><div class="item">Money</div></a>
                 <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
             </div>
                 <span id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px; font-weight: bold;">Bruce Wayne</span>
         </div>
         <div class="containerx">
-
-
-        <div id="payLot" >
-            
+        <div id="payLot"> 
         </div>
-        
-        
-
-
-
-
-
-
-
-
-
-            <div class="buttons">
-                <button onclick="printOut()" class="printOut">
-                    <span  value="print"  style="color:black; font-weight: bold;">PRINT OUT</span>
-                </button>
-            <button class="downloadPdf">
-                <span style="color:black; font-weight: bold;">DOWNLOAD</span>
-            </button>
-        </div>
-        </div>
-
-         
-        
+        <button onclick="printOut()" class="printOut">
+            <span  value="print"  style="color:black; font-weight: bold;">PRINT OUT</span>
+        </button> 
     </body>
     <script>
         async function logout(){
             localStorage.removeItem("employee")
-            document.location.href = "portal.html"
+            document.location.href = "portalLogin.html"
         }
         function showModal(){
                 const modal = document.getElementById("modalx")
@@ -153,7 +116,7 @@
                 nameElement.textContent = employee.name
                 setRequests()
             }else{
-                document.location.href = "portal.html"
+                document.location.href = "portalLogin.html"
             }
             function printOut(){
                 const employeeJSON = localStorage.employee
@@ -161,11 +124,21 @@
                 var getPayLot = document.getElementById('payLot').innerHTML;
 
                 var open = window.open('','','widht=400,height=600');
-                open.document.write(`OLA ${employee.name}`);
-                open.document.write('Seu salario é de');
-                open.document.write('10 mil reaias');
+                
+                open.document.write(`${employee.name}`);
+                open.document.write("<br>");
+                open.document.write(`${employee.sector}`);
+                open.document.write("<br>"); 
+                open.document.write('MONTHLY HOURS: 176H');
+                open.document.write("<br>");
+                open.document.write('HOURS BANKS: 15H');
+                open.document.write("<br>");
+                open.document.write('DISCOUNT ON THE HOURS BANK: 6H');
+                open.document.write("<br>");
+                open.document.write('REMUNERATION: 1.273,2');
                 open.document.close();
                 open.print()
             }
+            
     </script>
-</html>l
+</html>

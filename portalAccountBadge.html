@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <style>
             body{
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -174,8 +175,8 @@
                 <img width="40px" src="./bruceWaynePerson.jpg">
             </div>
             <div style="display: none" id="modalx">
-                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalBadge.html" ><div class="item">Badge</div></a>
-                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalPayLotPdf.html"><div class="item">Money</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalAccountBadge.html" ><div class="item">Badge</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalAccountPayLotPdf.html"><div class="item">Money</div></a>
                 <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
             </div>
                 <span id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px; font-weight: bold;">Bruce Wayne</span>
@@ -235,7 +236,7 @@
             }
             function logout(){
             localStorage.removeItem("employee")
-            document.location.href = "portal.html"
+            document.location.href = "portalLogin.html"
             }
             function showModal(){
                     const modal = document.getElementById("modalx")
