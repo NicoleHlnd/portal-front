@@ -14,7 +14,7 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 background-color: #E9E9E9;
-                height: 93%;
+                height: 90%;
                 width: 100%;
             }
             .header{
@@ -22,7 +22,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 background-color:#1f1f1f ;
-                height: 7%;
+                height: 10%;
                 width: 100%;
             }
             .imageProfile{
@@ -109,6 +109,7 @@
                 <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalAccountBadge.html" ><div class="item">Badge</div></a>
                 <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalAccountPayLotPdf.html"><div class="item">Money</div></a>
                 <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalServiceDeskViewAllRequests.html"><div class="item">Servise Desk</div></a>
             </div>
             <span  id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px;">Bruce Wayne</span>
         </div>  
@@ -124,12 +125,11 @@
                     <p style="color:white; margin-top: 60px;">CREATED BY:<span id="createdByText" style="color:black; margin-left: 5px;">MEGAESTILO</span></p>
                     <p style="color:white">REQUEST SECTOR:<span id="requestSectorText" style="color: black; margin-left: 5px;">HUMAN RESOURCES</p>
                     <p style="color:white">REQUEST DATE:<span id="requestDateText" style="color:black; margin-left: 5px;">15/02/2022</p></p>
-                        <div id="commentDiv" style="display: none;">
-                            <span style="color:black; margin-right: 380px; font-weight: bold;">COMMENT</span>
-                            <input id="description" class="description"></input>
-                        </div>
+                    <div id="commentDiv" style="display: none;">
+                        <span style="color:black; margin-right: 380px; font-weight: bold;">COMMENT</span>
+                        <input id="description" class="description"></input>
                     </div>
-              
+                </div>
                 <button onclick="respond()" style="display:none; margin-top: 30px;" id="answeRequest" class="answeRequest"><span style="color:#FFFFFF; font-weight: bold;">ANSWER REQUEST</span></button> 
                 <button onclick="finalize()" style="display:none; margin-top: 30px;" id="finalize" class="answeRequest"><span style="color:#FFFFFF; font-weight: bold;">FINALIZE</span></button>  
             </div>

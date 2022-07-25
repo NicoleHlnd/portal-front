@@ -5,7 +5,7 @@
             body{
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             }
-              .containerx{
+            .containerx{
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -14,7 +14,7 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 background-color: #E9E9E9;
-                height: 93%;
+                height: 90%;
                 width: 100%;
             }
             .header{
@@ -22,7 +22,7 @@
                 justify-content: flex-start;
                 align-items: center;
                 background-color:#1f1f1f ;
-                height: 7%;
+                height: 10%;
                 width: 100%;
             }
             .imageProfile{
@@ -89,15 +89,18 @@
                 <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalAccountBadge.html" ><div class="item">Badge</div></a>
                 <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalAccountPayLotPdf.html"><div class="item">Money</div></a>
                 <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalServiceDeskViewAllRequests.html"><div class="item">Servise Desk</div></a>
             </div>
-                <span id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px; font-weight: bold;">Bruce Wayne</span>
+            <span id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px; font-weight: bold;">Bruce Wayne</span>
+            </div>
         </div>
         <div class="containerx">
-        <div id="payLot"> 
+            <div id="payLot"> 
+            </div>
+            <button onclick="printOut()" class="printOut">
+                <span  value="print"  style="color:black; font-weight: bold;">PRINT OUT</span>
+            </button> 
         </div>
-        <button onclick="printOut()" class="printOut">
-            <span  value="print"  style="color:black; font-weight: bold;">PRINT OUT</span>
-        </button> 
     </body>
     <script>
         async function logout(){
@@ -125,9 +128,9 @@
 
                 var open = window.open('','','widht=400,height=600');
                 
-                open.document.write(`${employee.name}`);
+                open.document.write(`NAME: ${employee.name}`);
                 open.document.write("<br>");
-                open.document.write(`${employee.sector}`);
+                open.document.write(`SECTOR: ${employee.sector}`);
                 open.document.write("<br>"); 
                 open.document.write('MONTHLY HOURS: 176H');
                 open.document.write("<br>");
