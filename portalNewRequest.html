@@ -71,7 +71,6 @@
                 width: 500px;
             }
             .sector{
-                
                 margin-right: 250PX;
                 border: none;
                 border-radius: 10px;
@@ -131,7 +130,7 @@
                 <a style= "text-decoration: none; color: black; font-weight: bold;"  href="portalAccountBadge.html" ><div class="item">Badge</div></a>
                 <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalAccountPayLotPdf.html"><div class="item">Money</div></a>
                 <a onclick="logout()" style= "text-decoration: none; color: black; font-weight: bold;" ><div class="item">Logout</div></a>
-                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalServiceDeskViewAllRequests.html"><div class="item">Servise Desk</div></a>
+                <a style= "text-decoration: none; color: black; font-weight: bold;" href="portalServiceDeskViewAllRequests.html"><div class="item">Service Desk</div></a>
             </div>
             <span  id="name" style="color:#FFFFFF; font-size:25px; margin-left: 10px;">Bruce Wayne</span>
         </div>  
@@ -146,13 +145,12 @@
                 <option selected>Select the sector of user</option>
                 <option value="1">T.I</option>
                 <option value="2">RH</option>
-                <option value="3">Administrativo</option>
+                <option value="3">ADMINISTRATIVO</option>
             </select>
             <buttton onclick="register()" class="create"> 
                 <span style="color:#FFFFFF ;font-weight: bold;">CREATE
                 </span>
             </buttton>
-            
            </div>
         </div>
     </body>
@@ -170,41 +168,38 @@
             document.location.href = "portalLogin.html"
         }
         function showModal(){
-                const modal = document.getElementById("modalx")
-                modal.style.display = modal.style.display == "none" ? "flex" : "none"
-            }
-       
-
+            const modal = document.getElementById("modalx")
+            modal.style.display = modal.style.display == "none" ? "flex" : "none"
+        }
          async function register(){
-                const employee = JSON.parse(employeeJSON)
-                var title = document.getElementById("title").value
-                console.log(document.getElementById("sector"))
-                var description = document.getElementById("description").value
-                var sector = document.getElementById("sector")
-                const sectorValue = sector.options[sector.selectedIndex].text;
-                var askedby = document.getElementById("name").value
-                const obj = {
-                    "title": title,
-                    "description": description,
-                    "sector": sectorValue,
-                    "askedby": employee.name
-                }
-                console.log(obj)
-
-                const url = "http://localhost:3000/Requests"
-                const response = await fetch(url, {
-                    method: "POST",
-                    body: JSON.stringify(obj),
-                    headers: {"Content-Type": "application/json"}
-                })
-                if(response.status == 200){
-                    alert("REQUEST CREATE")           
-                    window.location.href = "portalServiceDeskViewAllRequests.html"
-                  
-                }else{
-                    return alert("error in crete REQUEST")
-                }
+            const employee = JSON.parse(employeeJSON)
+            var title = document.getElementById("title").value
+            console.log(document.getElementById("sector"))
+            var description = document.getElementById("description").value
+            var sector = document.getElementById("sector")
+            const sectorValue = sector.options[sector.selectedIndex].text;
+            var askedby = document.getElementById("name").value
+            const obj = {
+                "title": title,
+                "description": description,
+                "sector": sectorValue,
+                "askedby": employee.name
             }
-            
+            console.log(obj)
+
+            const url = "http://localhost:3000/Requests"
+            const response = await fetch(url, {
+                method: "POST",
+                body: JSON.stringify(obj),
+                headers: {"Content-Type": "application/json"}
+            })
+            if(response.status == 200){
+                alert("REQUEST CREATE")           
+                window.location.href = "portalServiceDeskViewAllRequests.html"
+                
+            }else{
+                return alert("error in crete REQUEST")
+            }
+        }    
     </script>
 </html>
